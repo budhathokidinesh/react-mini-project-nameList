@@ -1,6 +1,24 @@
+import { useState } from "react";
 import "./App.css";
+import { Display } from "./Components/Display";
+import { Form } from "./Components/Form";
+import { UserList } from "./Components/UserList";
 
 function App() {
+  // const [name, setName] = useState("");
+  const [list, setList] = useState([]);
+  const addUser = (name) => {
+    setList([...list, name]);
+  };
+
+  // const handleOnChange = (e) => {
+  //   const { value } = e.target;
+  //   setName(value);
+  // };
+  // const handleONSubmit = (e) => {
+  //   e.preventDefault();
+  //   setList([...list, name]);
+  // };
   return (
     <div
       className="wrapper"
@@ -16,20 +34,9 @@ function App() {
         className="userList"
         style={{ boxShadow: "0 0 10px grey", padding: "2rem" }}
       >
-        <div className="display">As you are typing</div>
-        <div className="form">
-          <form action="">
-            <input type="text" />
-            <button>Add User</button>
-          </form>
-        </div>
+        <Form addUser={addUser} />
         <hr />
-        <div className="list">
-          <ul>
-            <li>Dinesh</li>
-            <li>Sam</li>
-          </ul>
-        </div>
+        <UserList list={list} />
       </div>
     </div>
   );
